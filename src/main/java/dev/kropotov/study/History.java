@@ -11,7 +11,7 @@ public class History {
         return stateMap.get(date);
     }
 
-    public  State getState(LocalDate date, Class<? extends State> objectClass) {
+    public State getState(LocalDate date, Class<? extends State> objectClass) {
         return getState(date).get(objectClass);
     }
 

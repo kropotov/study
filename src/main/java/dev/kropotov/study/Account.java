@@ -44,6 +44,7 @@ public class Account {
 
     /**
      * Метод проверки возможности отмены.
+
      * @return true в случае возможности отмены, false - невозможности
      */
     public boolean canUndo() {
@@ -63,8 +64,9 @@ public class Account {
     /**
      * Метод, который принимает Валюту и её количество и заменяет текущее количество данной Валюты на указанное.
      * Если такой валюты ранее не было – она добавляется в список.
+     *
      * @param currency Валюта
-     * @param value Значение
+     * @param value    Значение
      */
     public void putFunds(Currency currency, Integer value) {
         if (value < 0) {
@@ -87,9 +89,10 @@ public class Account {
 
     /**
      * Метод сохранения
+     *
      * @return возвращает объект, который хранит состояние Account на момент запроса сохранения.
      */
-    public AccountState save(){
+    public AccountState save() {
         return new AccountState(owner, new HashMap<>(funds));
     }
 
@@ -97,16 +100,13 @@ public class Account {
      * Метод restore для приведения соответствующего ему объекта Account в состояние,
      * соответствующее моменту создания сохранения.
      */
-    public  void restore(AccountState accountState){
+    public void restore(AccountState accountState) {
         this.owner = accountState.getOwner();
         this.funds = accountState.getFunds();
     }
 
     @Override
     public String toString() {
-        return "Account{" +
-                "owner='" + owner + '\'' +
-                ", funds=" + funds +
-                '}';
+        return "Account{" + "owner='" + owner + '\'' + ", funds=" + funds + '}';
     }
 }
