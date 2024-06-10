@@ -5,13 +5,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class History {
-    private final Map<LocalDate, AccountState> accountStateMap = new HashMap<>();
+    private final Map<LocalDate, Map<Class<? extends State>, State>> stateMap = new HashMap<>();
 
-    public void addAccountState(LocalDate date, AccountState accountState) {
-        accountStateMap.put(date, accountState);
+    public Map<Class<? extends State>, State> getState(LocalDate date) {
+        return stateMap.get(date);
     }
 
-    public AccountState getAccountState(LocalDate date) {
-        return accountStateMap.get(date);
+    public  State getState(LocalDate date, Class<? extends State> objectClass) {
+        return getState(date).get(objectClass);
     }
+
+    public void addState(LocalDate date, Class<? extends State> objectClass, State state) {
+        Map<Class<? extends State>, State> classMap = stateMap.get(date);
+        if (classMap == null) {
+            classMap = new HashMap<>();
+        }
+        classMap.put(objectClass, state);
+        stateMap.put(date, classMap);
+    }
+
 }

@@ -79,20 +79,21 @@ public class AccountTest {
     }
 
     @Test
-    @DisplayName("Проверка сохранения состояния")
-    public void save() {
+    @DisplayName("Проверка сохранения и восстановления состояния")
+    public void saveAndRestore() {
         History history = new History();
 
         Account account = new Account(OWNER);
         account.putFunds(CURRENCY, VALUE);
 
         LocalDate date = LocalDate.now();
-        history.addAccountState(date, account.save());
+        history.addState(date, AccountState.class, account.save());
 
         account.setOwner(OWNER + " new");
         account.putFunds(CURRENCY, VALUE * 2);
 
-        account.restore(history.getAccountState(date));
+        AccountState accountState = (AccountState) history.getState(date, AccountState.class);
+        account.restore(accountState);
 
         assertEquals(account.getFunds().get(CURRENCY), VALUE);
         assertEquals(account.getOwner(), OWNER);
