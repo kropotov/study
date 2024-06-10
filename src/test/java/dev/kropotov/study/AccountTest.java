@@ -36,16 +36,17 @@ public class AccountTest {
     }
 
     @Test
-    @DisplayName("Проверка инкапсуляции средств пустой валютой")
-    public void positiveFundsValueNullCurrency() {
+
+    @DisplayName("Проверка изменения средств")
+    public void positiveFundsValue() {
         Account account = new Account(OWNER);
         account.putFunds(CURRENCY, VALUE);
         assertEquals(account.getFunds().get(CURRENCY), VALUE);
     }
 
     @Test
-    @DisplayName("Проверка изменения средств")
-    public void positiveFundsValue() {
+    @DisplayName("Проверка инкапсуляции средств пустой валютой")
+    public void positiveFundsValueNullCurrency() {
         Account account = new Account(OWNER);
         assertThrows(IllegalArgumentException.class, () -> account.putFunds(null, VALUE));
     }
