@@ -93,7 +93,7 @@ public class Account {
      * @return возвращает объект, который хранит состояние Account на момент запроса сохранения.
      */
     public AccountState save() {
-        return new AccountState(owner, new HashMap<>(funds));
+        return new AccountState(this);
     }
 
     /**

@@ -10,9 +10,9 @@ public class AccountState implements State {
     private final String owner;
     private final Map<Currency, Integer> funds;
 
-    public AccountState(String owner, Map<Currency, Integer> funds) {
-        this.owner = owner;
-        this.funds = new HashMap<>(funds);
+    public AccountState(Account account) {
+        this.owner = account.getOwner();
+        this.funds = account.getFunds();
     }
 
     public Map<Currency, Integer> getFunds() {
